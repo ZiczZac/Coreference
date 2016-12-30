@@ -18,6 +18,10 @@ Route::get('/', function () {
 Route::get('login', 'LoginController@show');
 Route::post('login', 'LoginController@login');
 
+//Home
+Route::get('home', function(){
+	return view('home');
+});
 //User
 Route::get('user', 'UserController@index');
 Route::post('user/update', 'UserController@update')->name('update');
