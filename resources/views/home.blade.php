@@ -6,7 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
-
+                @if(Auth::check())
+                    <p>{{Auth::user()->fullname}}</p>
+                @endif
                 <div class="panel-body">
                     You are logged in!
                 </div>

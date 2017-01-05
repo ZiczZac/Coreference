@@ -8,14 +8,8 @@ use App\AccountType;
 class UserController extends Controller
 {
     public function index(){
-    	// $types = AccountType::all();
-        // dd($types);
-        // foreach ($types as $type) {
-            // foreach ($type->users as $user) {
-                // echo $user->fullname;
-            // }
-        // }
         $users = User::all();
+        $user = User::find(5);
         return \View::make('admin.user.index')
                         ->with('users', $users);
     }

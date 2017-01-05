@@ -17,14 +17,28 @@ Route::get('/', function () {
 //Login
 Route::get('login', 'LoginController@show');
 Route::post('login', 'LoginController@login');
+Route::post('logout', 'LoginController@logout');
+Route::get('home', 'HomeController@index');
 
-//Home
-Route::get('home', function(){
-	return view('home');
+Route::group(['middleware' => 'auth'], function(){
+	
+	//Admin
+	Route::group(['middleware' => 'admin'], function(){
+		Route::get('user', 'UserController@index');
+		Route::post('user/update', 'UserController@update')->name('update');
+		Route::post('user/active', 'UserController@active');
+		Route::delete('user/delete', 'UserController@delete');
+
+		Route::get('file', 'FileController@index');
+	});
+	
+	//User
+	Route::group(['middleware' => 'user'], function(){
+		Route::get('labeling', 'LabelingController@fileLabeling');
+		Route::get('labeling/corpus', 'LabelingController@corpus');
+		Route::get('labeling/label/{id}', 'LabelingController@label');
+	});
+	
+	//Revisor
 });
-//User
-Route::get('user', 'UserController@index');
-Route::post('user/update', 'UserController@update')->name('update');
-Route::get('/home', 'HomeController@index');
-Route::post('user/active', 'UserController@active');
-Route::delete('user/delete', 'UserController@delete');
+
