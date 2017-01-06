@@ -10,12 +10,13 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js">
 	</script>
 	<script>
+
 		//************************************************highlight**************************************************************//
 
 		// **********************cần 1 mảng đại từ (id) , vị trí bắt đầu, kết thúc, mang nội dung đại từ(cacDaiTu) và nội đoạn văn.
 		var _words;
 		var _arrayID;
-		var _indexStart;		
+		var _indexStart = [];	         // trong cau	
 		var _arrDt ;					// mảng lưu nội dung đại từ
 		var _arrGroup=[];					// mảng lưu ds gom nhóm đại từ
 		var _contentFile;				// nội dung 1 file (kieu String)
@@ -24,11 +25,51 @@
 		var _visitted;
 		var _maxG=-1;
 		var _save=0;
+		var _idSentence = [];
+		var _indexEnd = [];
+		var _beginOnFile = [];
+		var _haveChild = [];
+		var _isChild = [];
+		var _indexEnd_File=[];
+		$(document).ready(function(){
+			var listNP = <?php echo json_encode($data['listNP'] ); ?>;
+			for(var i = 0; i < listNP.length; i++){
+
+				var infos = listNP[i].split('_');   // 0 id cau 1 stt trong cau 2 bat dau trong cau 3 ket thuc trong cau
+				_idSentence.push(infos[0]);
+				_indexStart.push(infos[1]);
+				_indexEnd.push(infos[2]);
+				_beginOnFile.push(infos[3]);
+				_indexEnd_File[i]=_beginOnFile[i]+(_indexEnd[i]-_indexStart[i]);
+			}
+			console.log(_indexStart);
+		});
+		function update_haveChild_arrDT(aIS,aIE){
+				for(var i = 0; i< aIS.length;i++){
+					var s = "";
+					for(var k = aIS[i]; k<=aIE[i];k++){
+						s+=_words[k]+" ";
+					}
+					_arrDt[i]=s;
+					// _arrDt[i]=s;
+					for(var j = 0; j<aIS.length;j++){
+						if(i!=j){
+							if(aIS[j]>=aIS[i]&&aIS[j]<=aIE[i]){
+								_haveChild[i]=1;
+								// j=aIS.length;
+								_isChild[j]=_arrayID[i];
+							}
+						}
+					}
+					if(_haveChild[i]!=1){_haveChild[i]=0;}
+				}
+		}
 		function  highlight(arrayID,arrDaiTu,arrIndexStart,arrIndexEnd,contentFile,kichthuoc) {
 
 			var iStart_End=0; 
 			// var iDaiTu=0;                            // chi so mang arrIndexStart va arrIndexEnd
 			_words = contentFile.split(" ");
+
 			var l = _words.length;
 			var s='';
 			for (var i =  0; i <= _words.length-1; i++) {
@@ -52,24 +93,15 @@
 				alert("Luu lai ket qua lam viec truoc khi tao moi ! "); return false;
 			}
 			else{
-				_arrayID = ["d1","d2","d3","d4","d5","d6","d7","d8"];  //,17,21,23,25,30  //,"d6"."d7","d8","d9","d10"
-				_indexStart = [0,4,8,12,15,17,25,30];
-				_indexEnd =   [2,5,8,13,15,17,25,31];
+				_contentFile = '{{$data['corpus']}}';
+				_arrayID = ["d1","d2","d3","d4","d5","d6","d7","d8"];  //,17,21,23,25,30  //,"d6"."d7","d8","d9","d10"				
 				_arrDt = [];
 				_arrGroup=[];
 				_visitted=[];
-				s1='Le_Minh_Duong';
-				s2='lap_trinh';
-				_arrDt.push(s1);
-				_arrDt.push(s2); _arrDt.push('Le');_arrDt.push('lap_trinh'); _arrDt.push('web'); _arrDt.push('Minh');_arrDt.push('Minh');_arrDt.push('mon_web');
-				// _arrDt.push('lap_trinh');_arrDt.push('lap_trinh');_arrDt.push('lap_trinh');_arrDt.push('lap_trinh');_arrDt.push('lap_trinh');
-
-				// for (var i = _arrDt.length - 1; i >= 0; i--) {
-				// 	_arrGroup.push(-1);
-				// }
 				
-				_contentFile = '{{$data['corpus']}}';
-					
+				_words = _contentFile.split(' ');
+
+				update_haveChild_arrDT(_indexStart,_indexEnd);
 				var s = highlight(_arrayID,_arrDt,_indexStart,_indexEnd,_contentFile,"20px");
 				document.getElementById('left_p').innerHTML=s;
 				_save=1;

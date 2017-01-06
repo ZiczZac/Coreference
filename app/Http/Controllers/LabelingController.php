@@ -30,9 +30,9 @@ class LabelingController extends Controller
 
 		$file = File::find($id);
 		$listNP = $this->getListNP($file);
-		$data['listNP'] = $listNP;
+		$data['listNP'] = $this->convertNP($listNP);
 		$data['corpus'] = $file->plain->description;
-		
+		// dd($data['listNP']);
 		return \View::make('user.labeling')
 					->with('data', $data);
 	}    
