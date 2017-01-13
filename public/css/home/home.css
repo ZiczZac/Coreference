@@ -1,0 +1,149 @@
+div#banner{
+    padding: 0px;
+    margin-top: 33px;
+}
+div#banner-content{
+    height: 700px;
+    background-image: url(../../img/banner.jpg);
+    background-attachment: fixed;
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+
+div.titlebox{
+    color: #333;
+    padding: 20% 0 0 0;
+    max-width: 60%;
+}
+div.titlebox h1{
+    display: block;
+    text-align: center;
+    line-height: 80px;
+}
+div.titlebox h1 span{
+    color: #aaa;
+    line-height: 30px;
+}
+div#content-main{
+    background-color: #f8f8f8;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+div#content-main h3{
+    color: #fff;
+    background-color: #bbb;
+    margin: 0px;
+    padding: 15px 0px;
+}
+hr#first{
+    margin-top: 0px;
+}
+div#content-main hr{
+    height: 4px;
+    background-image: url('../../img/bg-main.jpg');
+}
+
+@media screen and (min-width: 1024px){
+    div.titlebox h1{
+        padding-left: 20px;
+        padding-top: 130px;
+        font-size: 55px;
+        line-height: 60px;
+    }
+    div.titlebox h1 span{
+        font-size: 75px;
+    }
+    #banner{
+        width: 100%;
+    }
+    #banner-content{
+        max-height: 630px;
+        width: 100%;
+        background-attachment: inherit !important;
+    }
+    div#content-main h3{
+        font-size: 45px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    div.titlebox h1{
+        font-size: 45px;
+    }
+    div.titlebox h1 span{
+        font-size: 60px;
+    }
+    #banner-content{
+        max-height: 620px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    div.titlebox h1{
+        padding-top: 85px;
+        font-size: 35px;
+        line-height: 40px;
+    }
+    div.titlebox h1 span{
+        font-size: 50px
+    }
+    div#banner-content{
+        max-height: 400px;
+    }
+    div#content-main h3{
+        font-size: 35px;
+    }
+
+}
+@media screen and (max-width: 690px) {
+    .titlebox h1{
+        padding-top: 70px;
+        font-size: 25px !important;
+    }
+    .titlebox h1 span{
+        font-size: 30px !important;
+    }
+    #banner-content{
+        max-height: 590px;
+    }
+    div#content-main h3{
+        font-size: 30px;
+    }
+    div#content-main .container{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+@media screen and (max-width: 420px){
+    .titlebox h1{
+        font-size: 20px;
+        padding: 180px 0 0 0 !important;
+    }
+    .titlebox h1 br{
+        display: none;
+    }
+    div.titlebox h1 span{
+        padding-right: 20px;
+        font-size: 30px;
+    }
+    div.titlebox{
+        max-width: 100%;
+    }
+    #banner-content{
+        max-height: 370px !important;
+    }
+    div#content-main h3{
+        font-size: 22px;
+    }
+}
+@media screen and (max-width: 360px){
+    .titlebox h1{
+        font-size: 20px;
+        padding: 160px 0 0 0 !important;
+    }
+    #banner-content{
+        max-height: 330px !important;
+    }
+}
