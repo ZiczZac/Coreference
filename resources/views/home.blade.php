@@ -10,8 +10,7 @@
 @section('content-main')
     <div class="container-fluid" id="content-main">
         <div class="container">
-            <h3>Ngôn ngữ là y phục của tư duy.<br>
-                Language is the dress of thought.</h3>
+            <h3>Language is the dress of thought.</h3>
             <hr id="first">
             <div>content 1<br>
                 .................<br>

@@ -26,6 +26,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+
 </head>
 <body>
 
@@ -49,8 +50,8 @@
           <li><a href="#"></a></li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{Auth::user()->fullname}}</a></li>
+        <li><a class="log_out" href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
       </ul>
     </div>
   </div>
@@ -120,4 +121,18 @@
   
 </div>
 </body>
+<script type="text/javascript">
+    $('.log_out').click(function(){
+      $.ajax({
+        type: 'post',
+        url: 'logout',
+        data: {_token: token},
+        dataType: 'json',
+        success: function(data){
+            alert(data);
+            location.href = "http://localhost:8000/home";
+        }
+      });
+    });
+  </script>
 </html>

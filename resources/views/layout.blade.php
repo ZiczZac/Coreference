@@ -17,16 +17,23 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">tool 2</a></li>
-                    <li><a href="#">tool 3</a></li>
-                    <li><a href="#">tool...</a></li>
+                    <li><a  href="#">About Us</a></li>
+                    <li><a class="admin_tool" href="{{URL::to('/user')}}">Admin Tool</a></li>
+                    <li><a class="user_tool" href="{{URL::to('/labeling')}}">User Tool</a></li>
+                    <li><a class="reviser_tool" href="#"></a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-                    <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
-                                    class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                </ul>
+                @if(!Auth::user())
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
+                                        class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    </ul>
+                @else
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a herf="#" class="log_out"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
+                        <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
+                                        class="glyphicon glyphicon-log-in"></span>{{Auth::user()->fullname}}</a></li>
+                    </ul>
+                @endif
             </div>
         </div>
     </nav>
@@ -37,23 +44,19 @@
         <div class="row">
             <div class="col-md-3 col-sm-2 col-xs-0"></div>
             <div class="col-md-6 col-sm-8 col-xs-12">
-                <form class="modal-content animate" action="action_page.php">
+                <form class="modal-content animate login_form" action="action_page.php">
                     <span onclick="document.getElementById('id01').style.display='none'"
                           class="close" title="Close Modal">&times;</span>
-                    <label><b>Tên tài khoản</b></label>
-                    <input type="text" placeholder="Nhập tài khoản tại đây" name="uname" required>
+                    <label><b>Email</b></label>
+                    <input id="email" type="email" placeholder="alex@gmail.com" name="uname" required>
                     <br>
-                    <label><b>Mật khẩu</b></label>
-                    <input type="password" placeholder="Nhập mật khẩu tại đây" name="psw" required>
+                    <label><b>Password</b></label>
+                    <input  id="password" type="password" placeholder="password" name="psw" required>
                     <br>
-                    <button type="submit">Đăng nhập</button>
+                    <input class="btn btn-primary sign_in" placeholder="Sign In">
                     <br>
-                    <input type="checkbox" checked="checked"> Nhớ mật khẩu
+                    <input type="checkbox" checked="checked" placeholder="">Rememeber password
                     <br>
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                            class="cancelbtn">Cancel
-                    </button>
-                    <span class="psw">Quên <a href="#">mật khẩu?</a></span>
                 </form>
             </div>
             <div class="col-md-3 col-sm-2 col-xs-0"></div>
@@ -94,4 +97,44 @@
 <script type="text/javascript" src="jquery/jquery-3.1.1.js"></script>
 <script type="text/javascript" src="jquery/bootstrap.js"></script>
 <script type="text/javascript" src="{!! asset('js/layout/layout.js') !!}"></script>
+<script type="text/javascript">
+    var token = '{{ Session::token() }}';
+    $('.sign_in').click(function(){
+        var email = $('#email').val();
+        var password = $('#password').val();
+        $.ajax({
+            type: 'post',
+            data: {_token: token, email: email, password: password},
+            dataType: 'json',
+            url: 'login',
+            success: function(data){
+                alert(data);
+                if(data == "success"){
+                    window.location.reload();
+                    $('.admin_tool').attr('href', "{{URL::to('/user')}}");
+                    $('.user_tool').attr('href', "{{URL::to('/labeling')}}");
+                } else {
+                    $('.alert').remove();
+                    var error = '<p class=\'alert alert-danger\'>Wrong email or password<p>';
+                    $('.login_form').append(error);
+                }
+            }
+        });
+    })
+
+    $('.log_out').click(function(){
+        $.ajax({
+            type: 'post',
+            url: 'logout',
+            data: {_token: token},
+            dataType: 'json',
+            success: function(data){
+                alert(data);
+                window.location.reload();
+                $('.admin_tool').attr('href', '#');
+                $('.user_tool').attr('href', '#');
+            }
+        });
+    });
+</script>
 </html>

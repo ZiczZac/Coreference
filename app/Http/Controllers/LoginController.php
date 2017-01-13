@@ -18,18 +18,14 @@ class LoginController extends Controller
                         ->where('password', '=', $login['password'])->get()->first();
         if($user != null){
            Auth::loginUsingId($user->id);
-           return \View::make('home');
-        } else {
-            return redirect('login');
+           return response()->json('success');
         }
         
-    }
-    public function show(){
-        return \View::make('auth.login');
+        return response()->json('fail');
     }
     public function logout(){
         Auth::logout();
-        return redirect('/home');
+        return response()->json("Logout success");
     }
 
 }

@@ -70,7 +70,7 @@ div#map{
     font-size: 55px;
     font-weight: bold;
 }
-#head-section input[type=text], input[type=password] {
+#head-section input[type=text], input[type=email], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -102,3 +102,5 @@ div#map{
     from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
 }
+
+.sign-in 
