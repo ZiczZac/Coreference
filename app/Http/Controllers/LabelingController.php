@@ -32,7 +32,35 @@ class LabelingController extends Controller
 		$listNP = $this->getListNP($file);
 		$data['listNP'] = $this->convertNP($listNP);
 		$data['corpus'] = $file->plain->description;
-		// dd($data['listNP']);
+
+		$begin_on_file = [];
+		$end_on_file = [];
+		$list_content_np = [];
+		$list_token = explode(' ', $data['corpus']);
+
+		foreach ($data['listNP'] as $np) {
+			
+			$infos = explode('_',$np);
+			
+			array_push($begin_on_file,$infos[3]);
+			$end = $infos[3] + $infos[2] - $infos[1];
+			array_push($end_on_file, $end);
+			$content_np = '';
+			for($i = $infos[3]; $i <= $end; $i++){
+				if($content_np != ''){
+					$content_np .= '_' . $list_token[$i];
+				} else {
+					$content_np = $list_token[$i];
+				}
+			}
+			array_push($list_content_np, $content_np);
+		}
+
+		$data['begin_on_file'] = $begin_on_file;
+		$data['end_on_file'] = $end_on_file;
+		$data['list_content_np'] = $list_content_np;
+		dd($data);
+		dd($list_content_np);
 		return \View::make('user.labeling')
 					->with('data', $data);
 	}    
