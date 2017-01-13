@@ -31,10 +31,9 @@ trait LabelTrait {
         });
         
         foreach ($listNP as $np) {
-            $encode = $np->sentence . '_' . $np->start . '_' . $np->end . '_' .$np->description ;
+            $encode = $np->sentence . '_' . $np->start . '_' . $np->end . '_' .$np->description . '_' . $np->id;
             array_push($nps, $encode);
         }
-        
         return $nps;
     }
 }

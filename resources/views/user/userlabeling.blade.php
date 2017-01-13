@@ -10,14 +10,13 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js">
 	</script>
 	<script>
-
 		//************************************************highlight**************************************************************//
 
 		// **********************cần 1 mảng đại từ (id) , vị trí bắt đầu, kết thúc, mang nội dung đại từ(cacDaiTu) và nội đoạn văn.
-		var _words;
-		var _arrayID;
-		var _indexStart = [];	         // trong cau	
-		var _arrDt ;					// mảng lưu nội dung đại từ
+		var _words=[];
+		var _arrayID=[];
+		var _indexStart=[];		
+		var _arrDt=[] ;					// mảng lưu nội dung đại từ
 		var _arrGroup=[];					// mảng lưu ds gom nhóm đại từ
 		var _contentFile;				// nội dung 1 file (kieu String)
 		var _idG=-1;                     // id nhóm được chọn
@@ -25,61 +24,39 @@
 		var _visitted = [];
 		var _maxG=-1;
 		var _save=0;
-		var _idSentence = [];
-		var _indexEnd = [];
-		var _beginOnFile = [];
-		var _haveChild = [];
-		var _isChild = [];
-		var _indexEnd_File=[];
-		$(document).ready(function(){
-			var listNP = <?php echo json_encode($data['listNP'] ); ?>;
-			for(var i = 0; i < listNP.length; i++){
+		var _haveChild=[];
+		var _indexEnd=[];
+		var _isChild =[];
+		var _color=['B2001F','DF0029', 'FF69B4', '9F79EE'];
+		
 
-				var infos = listNP[i].split('_');   // 0 id cau 1 stt trong cau 2 bat dau trong cau 3 ket thuc trong cau
-				_idSentence.push(infos[0]);
-				_indexStart.push(infos[1]);
-				_indexEnd.push(infos[2]);
-				_beginOnFile.push(infos[3]);
-				_indexEnd_File[i]=_beginOnFile[i]+(_indexEnd[i]-_indexStart[i]);
-			}
-			console.log(_indexStart);
-		});
-		function update_haveChild_arrDT(aIS,aIE){
-				for(var i = 0; i< aIS.length;i++){
-					var s = "";
-					for(var k = aIS[i]; k<=aIE[i];k++){
-						s+=_words[k]+" ";
-					}
-					_arrDt[i]=s;
-					// _arrDt[i]=s;
-					for(var j = 0; j<aIS.length;j++){
-						if(i!=j){
-							if(aIS[j]>=aIS[i]&&aIS[j]<=aIE[i]){
-								_haveChild[i]=1;
-								// j=aIS.length;
-								_isChild[j]=_arrayID[i];
-							}
-						}
-					}
-					if(_haveChild[i]!=1){_haveChild[i]=0;}
-				}
-		}
+		
+
+
 		function  highlight(arrayID,arrDaiTu,arrIndexStart,arrIndexEnd,contentFile,kichthuoc) {
-
-			var iStart_End=0; 
-			// var iDaiTu=0;                            // chi so mang arrIndexStart va arrIndexEnd
+			var iStart_End=0;// chi so mang arrIndexStart va arrIndexEnd
+			var vs_S=[];
+			var vs_E=[];
 			_words = contentFile.split(" ");
-
 			var l = _words.length;
 			var s='';
 			for (var i =  0; i <= _words.length-1; i++) {
 				if(i==arrIndexStart[iStart_End]){
-					_words[i]='<b title=""  style="font-size:'+kichthuoc+'" index='+iStart_End+' class="daitu" id='+arrayID[iStart_End]+' value='+arrDaiTu[iStart_End]+' onclick="clickDaiTu(this.id)">'+_words[i];
-					_words[arrIndexEnd[iStart_End]]=_words[arrIndexEnd[iStart_End]]+'</b>'
-					iStart_End++;
+						if(vs_S[i]!=1){
+							_words[i]='<b title="" data-toggle="" data-target="" style="font-size:'+kichthuoc+'" index='+iStart_End+' class="daitu" id='+arrayID[iStart_End]+' value='+arrDaiTu[iStart_End]+' onclick="clickDaiTu(this.id)">'+_words[i];
+							vs_S[i]=1;
+						}
+						if(vs_E[arrIndexEnd[iStart_End]]!=1){
+							_words[arrIndexEnd[iStart_End]]=_words[arrIndexEnd[iStart_End]]+'</b>';
+							vs_E[arrIndexEnd[iStart_End]]=1;
+						}
+						
+						iStart_End++;
 				}
+
 				s+=_words[i]+' ';
 			}
+			console.log(s);
 			return s;
 		}
 
@@ -87,27 +64,39 @@
 		function showID(id){
 			console.log('id :'+id);
 		}
+
+		//Mang bd trong file, ket thuc trong file, 
+		//Mang cac dai
+		$(document).ready(function(){
+			_contentFile = 'Bên cạnh văn nghị luận xã hội thì trong chương trình Ngữ văn lớp 10 còn có một thể loại văn nữa là bài văn tả cảnh . Giúp chúng ta hiểu rõ hơn về thể loại này . Dưới đây là một số bài văn mẫu về thể loại này mời các bạn cũng tham khảo .';	
+			_words=_contentFile.split(" ");
+			_arrayID = ["d1","d2","d3","d4","d5","d6","d7","d8","d9","d10"]; 
+			_indexStart = [2,3,5,9,11,18,23,29,35,44];
+			_indexEnd=    [6,4,5,10,12,19,23,29,35,44];
+			// // _indexEnd = 
+			_arrDt=["văn_nghị_luận_xã_hội","nghị_luận","xã_hội"];
+			// var start_S =[2,3,5,9,11,18,23,1,7,5];
+			// var end_S=[5,4,5,10,13,19,24,2,9,7];
+			// for(var i = 0 ; i< start_S.length;i++){
+			// 		var len = (end_S[i]-start_S[i])+1;
+			// 		_indexEnd[i]=(_indexStart[i]+len)-1;
+			// }
+			// // update_haveChild_arrDT(_indexStart,_indexEnd);
+			// for(var i =0; i<_isChild.length;i++){
+			// 		console.log(_arrayID[i]+": " +_isChild[i]);
+			// 	}
+			// console.log(_arrDt);
+		});
 		function showOnDiv(idCard){
-			// lamtuoi();
 			if(_save==1){
 				alert("Luu lai ket qua lam viec truoc khi tao moi ! "); return false;
 			}
 			else{
-				_contentFile = '{{$data['corpus']}}';
-				_arrayID = ["d1","d2","d3","d4","d5","d6","d7","d8"];  //,17,21,23,25,30  //,"d6"."d7","d8","d9","d10"				
-				_arrDt = [];
-				_arrGroup=[];
-				_visitted=[];
-				
-				_words = _contentFile.split(' ');
-
-				update_haveChild_arrDT(_indexStart,_indexEnd);
 				var s = highlight(_arrayID,_arrDt,_indexStart,_indexEnd,_contentFile,"20px");
 				document.getElementById('left_p').innerHTML=s;
 				_save=1;
 				thongbaoNhom();
-				
-				
+	
 			}
 			
 				
@@ -119,7 +108,7 @@
 			        	var indexDT = document.getElementById(this.id).attributes['index'].value;
 			        	var tbG = "Nhom : ";
 			        	var vG = parseInt(_arrGroup[indexDT])+1;
-			        	tbG+=vG;
+			        	tbG+=vG+": "+_haveChild[parseInt(_arrGroup[indexDT])];
 				        if(_arrGroup[indexDT]>=0){document.getElementById(this.id).attributes['title'].value = tbG}
 				        	else{document.getElementById(this.id).attributes['title'].value = "Chưa được gom nhóm"}
 				        // if(_arrGroup[indexDT]==-1){document.getElementById(this.id).attributes['title'].value = "Chưa được gom nhóm"}
@@ -127,6 +116,19 @@
 
 		    		},
 		    		function(){
+		    		}
+		    	);
+		}
+
+		function thongbaoDaiTuGoc(id){
+			var index=parseInt(id.substring(5,id.length));
+			var hover = document.getElementById(_arrayID[index]);
+			$('#'+id).hover(
+					function(){
+						hover.style.color='blue';hover.style.fontSize='30px';
+		    		},
+		    		function(){
+		    			hover.style.fontSize='100%';hover.style.color='#222222';
 		    		}
 		    	);
 		}
@@ -149,30 +151,64 @@
 					para.appendChild(node2);
 					var element = document.getElementById(chuyensangdau);
 					element.appendChild(para);
+					// document.getElementById(idmoi).attributes['onmouseover']=back();
 					document.getElementById(idmoi).addEventListener("click", function(){
 						$('#'+idmoi).remove();
 						back(this.id);
 					});
+
+					thongbaoDaiTuGoc(idmoi);
 					if(_idG>_maxG){_maxG=_idG;}			
 		}
 
 		
 		function clickDaiTu(idDaiTu){
+
 				if(_idG==-1){
 					createNewGroup();
 				}
 			
 				var dt=document.getElementById(idDaiTu);
-				dt.style.fontSize="100%";
+				
 				var g = dt.attributes['index'].value;
 				var index = parseInt(g);
-				if (_visitted[index]!=1){			
-					console.log(index);
-					_arrGroup[index]=_idG;  
-					_visitted[index]=1;
-					var tb = _arrDt[index]  +' : '+_arrGroup[index];                      
-					console.log(tb);
-					chuyenDaiTuSangNhom(g,dt,_idG);	
+				var x = $("#"+idDaiTu).children("b");
+				
+				
+				
+
+				if (_visitted[index]!=1){	
+					if(x.length==0){                  // khong co Np con ben trong
+						dt.style.fontSize="100%";
+						console.log(_haveChild[index]);
+						_arrGroup[index]=_idG;  
+						_visitted[index]=1;
+						var tb = _arrDt[index]  +' : '+_arrGroup[index];                      
+						// console.log(tb);
+						chuyenDaiTuSangNhom(g,dt,_idG);	
+					}
+					else{                                     // neu co con thi phai dua ra lua chon
+						// var childs = $('#'+idDaiTu).children();
+						// console.log(childs.length+": con");
+						// for(var i =0; i<childs.length;i++){
+						// 	var idex = parseInt(childs[i].attributes['index'].value);
+						// 	console.log(_arrDt[idex]);
+						// }
+
+						// <button class = "btn btn-primary edit" data-toggle = "modal" data-target = "#editModal">Edit</button>
+						// alert("ok");
+						dt.attributes["data-toggle"].value="modal";
+						dt.attributes["data-target"].value="#npview";
+						var s ="";
+						var r = "";
+						for(var i =0; i<x.length; i++){
+							var index = parseInt(x[i].attributes['index'].value);
+							
+							r+=_arrDt[index]+" ";
+						}
+						alert("Co "+x.length+" con : "+r);
+					}
+					
 				}
 				else{
 					return false;
@@ -187,6 +223,7 @@
 			_arrGroup[index]=-1;
 			_visitted[index]=-1;
 			document.getElementById(_arrayID[index]).style.fontSize="20px";
+			document.getElementById(_arrayID[index]).style.color="#222222";
 		}
 
 		// *************************************Nhóm Đại Từ*********************************//
@@ -264,7 +301,7 @@
 			_idAuto=0;					// id tự sinh khi tạo mới Group
 			_visitted=[];
 			_save=0;
-			
+			_indexEnd=[];
 			document.getElementById('left_p').innerHTML="";
 			$('#right').children().each(function(){
        			$(this).remove();
@@ -326,7 +363,21 @@
 			
 		}
 
-
+		function setUpNew(file,start_File,start_S,end_S){
+			
+			// _words=file.split(" ");
+			// _indexStart=start_File;
+			// update_arrDT_IndexEnd_f(arrIndexStart_S,arrIndexEnd_S,arrIndexStart_File,_words);      // cap nhat cho mang _arrDT va indexEnd
+			// for(var i = 0 ; i< start_S.length){
+			// 	var len = (end_S[i]-start_S[i])+1;
+			// 	_indexEnd[i]=(start_File[i]+len)-1;
+			// 	var s="";
+			// 	for(var j = start_File[i]; j<start_File[i]+len;j++){
+			// 		s+=arrWords[j]+" ";
+			// 		_arrDt[i]=s;
+			// 	}
+			// }
+		}
 
 	</script>
 	<style type="text/css">
@@ -390,7 +441,7 @@
 		.group:hover{cursor: hand;
 			cursor: pointer;}
 		.dagomnhom{
-			/*background-color: green;*/
+			background-color: green;
 			margin-left: 10px;
 			background-color: White;
 		}
@@ -403,6 +454,9 @@
 		.back{
 			background-color: white;
 			color: red;
+		}
+		.daitu{
+			/*color: blue;*/
 		}
 	</style>
 </head>
@@ -429,7 +483,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1" id="demo"></div>
 	</div>
-	
+	@include('user.npview')
 	<!-- <button id="btn" >click here</button> -->
 </body>
 </html>
