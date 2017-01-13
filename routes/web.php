@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::delete('user/delete', 'UserController@delete');
 
 		Route::get('file', 'FileController@index');
+		Route::post('file/edit', 'FileController@update');
 	});
 	
 	//User

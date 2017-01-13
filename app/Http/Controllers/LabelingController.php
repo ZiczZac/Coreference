@@ -15,7 +15,7 @@ class LabelingController extends Controller
 		$files = File::all();
 		$fileLabeling = $this->getFileLabeling($files);
 		// dd($fileFinshed);
-		return \View::make('user.file_manage')
+		return \View::make('user.userfile')
 						->with('fileLabeling', $fileLabeling);
 	}
 
@@ -33,7 +33,7 @@ class LabelingController extends Controller
 		$data['listNP'] = $this->convertNP($listNP);
 		$data['corpus'] = $file->plain->description;
 		// dd($data['listNP']);
-		return \View::make('user.labeling')
+		return \View::make('user.userlabeling')
 					->with('data', $data);
 	}    
 }

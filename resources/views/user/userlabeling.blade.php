@@ -22,7 +22,7 @@
 		var _contentFile;				// nội dung 1 file (kieu String)
 		var _idG=-1;                     // id nhóm được chọn
 		var _idAuto=0;					// id tự sinh khi tạo mới Group
-		var _visitted;
+		var _visitted = [];
 		var _maxG=-1;
 		var _save=0;
 		var _idSentence = [];
