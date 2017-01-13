@@ -42,4 +42,10 @@ Route::group(['middleware' => 'auth'], function(){
 	
 	//Revisor
 });
+Route::get('layout', function (){
+    return view('layout');
+});
+Route::get('home', function (){
+    return view('home');
+});
 
