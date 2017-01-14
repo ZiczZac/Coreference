@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index(){
         $users = User::all();
         $user = User::find(5);
-        return \View::make('admin.manageuser.index')
+        return \View::make('admin.users.users')
                         ->with('users', $users);
     }
 

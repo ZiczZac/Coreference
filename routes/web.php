@@ -17,12 +17,17 @@ Route::get('/', function () {
 //Login
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
+// Route::post('admin/logout', 'LoginController@logout');
 Route::get('home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function(){
 	
 	//Admin
 	Route::group(['middleware' => 'admin'], function(){
+		Route::get('statistical', function (){
+		    return view('admin.statistical.statistical');
+		});
+		Route::get('users', 'UserController@index');
 		Route::get('user', 'UserController@index');
 		Route::post('user/update', 'UserController@update')->name('update');
 		Route::post('user/active', 'UserController@active');
@@ -40,6 +45,9 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::post('labeling/label/save', 'LabelingController@save');
 
 		Route::get('edit', 'EditLabelingController@index');
+		Route::get('edit/label/{id}', 'EditLabelingController@edit');
+		Route::post('edit/lable/save', 'LabelingController@save');
+
 	});
 	
 	//Revisor
@@ -53,9 +61,4 @@ Route::get('home', function (){
 Route::get('admin', function (){
     return view('admin.layout.admin-layout');
 });
-Route::get('admin/statistical', function (){
-    return view('admin.statistical.statistical');
-});
-Route::get('admin/users', function (){
-    return view('admin.users.users');
-});
+

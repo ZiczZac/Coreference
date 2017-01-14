@@ -2,63 +2,63 @@
 @extends('admin.layout.admin-layout')
 @section('banner')
     <marquee scrollamount="20">
-        <div id="welcome">Xin chào admin !</div>
+        <div id="welcome">Welcome admin !</div>
     </marquee>
-    <h1>Báo cáo thống kê</h1>
+    <h1>Report</h1>
     <div class="row">
         <div class="col-sm-6 col-lg-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Tài liệu duyệt trong tuần này
+                    New document on week
                 </div>
                 <div class="panel-body big-number info4">
                     56
                 </div>
                 <hr>
                 <div class="panel- pannel-seemore">
-                    <a href="#">Chi tiết</a>
+                    <a href="#">Detail</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    Người đang online
+                    Online
                 </div>
                 <div class="panel-body big-number info2">
                     56
                 </div>
                 <hr>
                 <div class="panel- pannel-seemore">
-                    <a href="#">Chi tiết</a>
+                    <a href="#">Detail</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    Tài liệu đang thực hiện
+                    On Processing
                 </div>
                 <div class="panel-body big-number info3">
                     56
                 </div>
                 <hr>
                 <div class="panel- pannel-seemore">
-                    <a href="#">Chi tiết</a>
+                    <a href="#">Detail</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3">
             <div class="panel  panel-warning">
                 <div class="panel-heading">
-                    Số thành viên
+                    Nembers
                 </div>
                 <div class="panel-body big-number info1">
                     56
                 </div>
                 <hr>
                 <div class="panel- pannel-seemore">
-                    <a href="#">Chi tiết</a>
+                    <a href="#">Detail</a>
                 </div>
             </div>
         </div>
@@ -69,11 +69,11 @@
     <div class="row">
         <div class="col-xs-12 col-sm-6">
             <table>
-                <caption><h2>Top 10 người làm nhiều</h2></caption>
+                <caption><h2>Hard working</h2></caption>
                 <tr>
-                    <th>Stt</th>
+                    <th>No</th>
                     <th>User</th>
-                    <th>Số lượng</th>
+                    <th>Number</th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -110,11 +110,11 @@
         <div class="col-xs-12 col-sm-6">
 
             <table>
-                <caption><h2>Top 10 người làm ít</h2></caption>
+                <caption><h2>Lazy</h2></caption>
                 <tr>
-                    <th>Stt</th>
+                    <th>No</th>
                     <th>User</th>
-                    <th>Số lượng</th>
+                    <th>Number</th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -160,11 +160,11 @@
         <div class="col-xs-12 col-sm-6">
 
             <table>
-                <caption><h2 class="warning">Không làm 7 ngày qua</h2></caption>
+                <caption><h2 class="warning">Not working last 7 days</h2></caption>
                 <tr>
-                    <th>Stt</th>
+                    <th>No</th>
                     <th>User</th>
-                    <th>Số lượng</th>
+                    <th>The Last Login</th>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -202,11 +202,11 @@
         <div class="col-xs-12 col-sm-6">
 
             <table>
-                <caption><h2 class="warning">Thực hiện quá hạn (3 ngày)</h2></caption>
+                <caption><h2 class="warning">Out of date (3 days)</h2></caption>
                 <tr>
                     <th>Stt</th>
                     <th>User</th>
-                    <th>Số file quá hạn</th>
+                    <th>Number</th>
                 </tr>
                 <tr>
                     <td>1</td>

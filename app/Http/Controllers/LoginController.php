@@ -23,10 +23,7 @@ class LoginController extends Controller
         
         return response()->json('fail');
     }
-    public function getUser(){
-                $user = User::find(3);
-                dd($user);
-    }
+    
     public function logout(){
         Auth::logout();
         return response()->json("Logout success");

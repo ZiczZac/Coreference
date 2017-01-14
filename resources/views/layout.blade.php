@@ -21,12 +21,17 @@
                         <li><a  href="#">About Us</a></li>
                     </ul>
                 @if(Auth::user())
-                    <ul class="nav navbar-nav">
-                        <li><a class="admin_tool" href="{{URL::to('/user')}}">Admin Tool</a></li>
-                        <li><a class="user_tool" href="{{URL::to('/labeling')}}">User Tool</a></li>
-                        <li><a class="reviser_tool" href="#"></a></li>
-                    </ul>
-
+                    @if(Auth::user()->account_type == 1)
+                        <ul class="nav navbar-nav">
+                            <li><a class="admin_tool" href="{{URL::to('/users')}}">Users Mange</a></li>
+                            <li><a class="user_tool" href="{{URL::to('/statistical')}}">System Mange</a></li>
+                        </ul>
+                    @endif
+                    @if(Auth::user()->account_type == 2)
+                        <ul class="nav navbar-nav">
+                            <li><a class="user_tool" href="{{URL::to('/labeling')}}">Labeling</a></li>
+                        </ul>
+                    @endif
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">{{Auth::user()->fullname}}</a></li>
                         <li><a herf="#" class="log_out"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
@@ -113,7 +118,7 @@
             success: function (data) {
                 alert(data);
                 if (data == "success") {
-                    window.location.reload();
+                    location.href = 'http://localhost:8000/statistical';
                     $('.admin_tool').attr('href', "{{URL::to('/user')}}");
                     $('.user_tool').attr('href', "{{URL::to('/labeling')}}");
                 } else {
@@ -133,7 +138,7 @@
             dataType: 'json',
             success: function (data) {
                 alert(data);
-                window.location.reload();
+                location.href = "http://localhost:8000/"
                 $('.admin_tool').attr('href', '#');
                 $('.user_tool').attr('href', '#');
             }

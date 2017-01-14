@@ -19,131 +19,32 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>
-                <button class="btn btn-danger delete" data-toggle="modal" data-target="#deleteModal" id="delete-record">
-                    Delete
-                </button>
+        @foreach($users as $user)
+        
+        <tr id='{{$user->id}}'>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->fullname }}</td>
+            <td>{{ $user->accountType['name']}}</td>
+            <td>Role</td>
+            <td id="activated{{$user->id}}">
+            @if($user->activated == 0)
+                Inactive
+            @else
+                Activated
+            @endif
             </td>
+            <!-- we will also add show, edit, and delete buttons -->
             <td>
-                <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <button class="btn btn-primary edit" data-toggle="modal" data-target="#editModal">Edit</button>
+                <button class = "btn btn-danger delete" data-toggle = "modal" data-target = "#deleteModal" id="delete-record">Delete</button>
             </td>
-            <td>
-                <button class="btn btn-success active" type="submit">Active/Inactive</button>
-            </td>
+            <td><button class = "btn btn-primary edit" data-toggle = "modal" data-target = "#editModal">Edit</button></td>
+            <td><button class="btn btn-success active" type="submit">Active/Inactive</button></td>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
-    <hr id="hr2">
-    <table class="user-list">
-        <caption><h2 style="color: red">Người không làm 7 ngày qua</h2></caption>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>User</th>
-            <th>Role</th>
-            <th>Action</th>
-            <th>Tool</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Trieu</td>
-            <td>trieunv@gmail.com</td>
-            <td>Member</td>
-            <td>Status</td>
-            <td>Status</td>
-        </tr>
-        </tbody>
-    </table>
+    @include('admin.manageuser.edit')
+    @include('admin.manageuser.delete')
 @stop
 @section('script')
     <script type="text/javascript" src="{!! asset('dataTable/jquery.dataTables.min.js') !!}"></script>

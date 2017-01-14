@@ -63,6 +63,7 @@ class LabelingController extends Controller
 		$data['end_on_file'] = $end_on_file;
 		$data['list_content_np'] = $list_content_np;
 		$data['list_token'] = $list_token;
+		$data['groupNP'] = [];
 		// dd($data);
 		return \View::make('user.userlabeling')
 					->with('data', $data);
@@ -75,7 +76,7 @@ class LabelingController extends Controller
 		if($coref_has_max_id == null){
 			$max_id = 0;
 		} else {
-			$max_id = $coref_has_max_id->id;
+			$max_id = $coref_has_max_id->id + 1;
 		}
 		// dd($max_id);
 		

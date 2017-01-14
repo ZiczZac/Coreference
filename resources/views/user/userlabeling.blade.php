@@ -181,7 +181,7 @@
 			// _words = contentFile.split(" ");
 			var s='';
 			for(var i = 0; i<=_indexStart.length-1;i++){
-				_words[_indexStart[i]]= '<b title="" data-toggle="" data-target="" style="font-size:'+kichthuoc+'" index='+i+' class="daitu" id='+arrayID[i]+' value='+arrDaiTu[i]+' onclick="clickDaiTu(this.id)">'+_words[_indexStart[i]];
+				_words[_indexStart[i]]= '<b title="" data-toggle="" data-target="" style="font-size:'+kichthuoc+'" index='+i+' class="daitu" id='+arrayID[i]+' onclick="clickDaiTu(this.id)">'+_words[_indexStart[i]];
 				_words[_indexEnd[i]]+='</b>';
 			}
 			for(var i =0; i<_words.length;i++){
@@ -442,15 +442,16 @@
 		// *************************************Làm tươi khi sửa 1 file đã gom nhóm*********************************//
 		function update(){
 			rF();
-			var contentFile="Duong la sinh vien , Anh ay choi ghita va co ta la nguoi yeu";
+			// var contentFile="Duong la sinh vien , Anh ay choi ghita va co ta la nguoi yeu";
 			//                0     1   2   3   4  5   6  7    8     9  10 11 12 13    14
-			_arrayID=["d1","d2","d3","d4","d5","d6"];
-			_arrDt=["Duong","sinh_vien","vien","Anh_ay","Co_ta","nguoi"];
-			 
-			_indexStart=[0,2,3,5,10,13];
-			_indexEnd=  [0,4,3,6,11,13];
-			_arrGroup=[-1,1,0,-1,1,-1];
-			_words=contentFile.split(" ");
+			_contentFile = '{{$data['corpus']}}';	
+			_words = <?php echo json_encode($data['list_token']); ?>;
+			// alert(_words);
+			_arrayID = <?php echo json_encode($data['listNP']); ?>; 
+			_indexStart = <?php echo json_encode($data['begin_on_file']) ?>;
+			_indexEnd=  <?php echo json_encode($data['end_on_file']) ?>;
+			_arrDt=<?php echo json_encode($data['list_content_np']) ?>;
+			_arrGroup=<?php echo json_encode($data['groupNP']) ?>;
 			modify();
 			subGroup(_indexStart,_indexEnd);
 			console.log(belongGroup[1].length);
@@ -467,7 +468,7 @@
 			for (var i = 0; i <= slG; i++) {
 				createNewGroup();
 			}
-			var s = highlight(_arrayID,_arrDt,_indexStart,_indexEnd,contentFile,"100%");
+			var s = highlight(_arrayID,_arrDt,_indexStart,_indexEnd,"","100%");
 			document.getElementById('left_p').innerHTML=s;
 			// document.getElementsByClassName('daitu').style.fontSize="100%";
 			_save=1;

@@ -14,7 +14,7 @@
     </thead>
     <tbody>
     <?php $number = 1; ?>
-    @foreach($fileLabeling as $file)
+    @foreach($list_file as $file)
         
         <tr id='{{$file->id}}'>
             <td>{{ $number ++ }}</td>
@@ -22,7 +22,8 @@
             <td>{{ $file->name }}</td>
             </td>
             <td>
-                <a class = "btn btn-success" href="{{URL::to('labeling/label/'.$file->id)}}">Fix</a>
+                <a class = "btn btn-success" href="{{URL::to('edit/label/'.$file->id)}}">Fix</a>
+                <a class = "btn btn-success" href="{{URL::to('edit/show/'.$file->id)}}">Fix</a>
             </td>
         </tr>
     @endforeach
