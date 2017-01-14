@@ -15,6 +15,7 @@
                 <a class="navbar-brand" href="#">Img Logo</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
+
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
                         <li><a  href="#">About Us</a></li>
@@ -27,10 +28,10 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a herf="#" class="log_out"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
-                        <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
-                                        class="glyphicon glyphicon-log-in"></span>{{Auth::user()->fullname}}</a></li>
+                        <li><a href="#">{{Auth::user()->fullname}}</a></li>
 
+                        <li><a herf="#" class="log_out"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
+                        
                     </ul>
                 @else
                     <ul class="nav navbar-nav navbar-right">
@@ -41,7 +42,6 @@
             </div>
         </div>
     </nav>
-    <div style="padding-top: 17px;"></div>
     <!-- Button to open the modal login form -->
     <!-- <button onclick="document.getElementById('id01').style.display='block'">Login</button> -->
     <div id="id01" class="modal container-fluid">
@@ -55,7 +55,7 @@
                     <input id="email" type="email" placeholder="alex@gmail.com" name="uname" required>
                     <br>
                     <label><b>Password</b></label>
-                    <input  id="password" type="password" placeholder="password" name="psw" required>
+                    <input id="password" type="password" placeholder="password" name="psw" required>
                     <br>
                     <input class="btn btn-primary sign_in" placeholder="Sign In">
                     <br>
@@ -67,7 +67,7 @@
         </div>
     </div>
 </div>
-
+<div style="padding-top: 50px;"></div>
 <div class="container-fluid" id="banner">
     @yield('banner')
 </div>
@@ -103,7 +103,7 @@
 <script type="text/javascript" src="{!! asset('js/layout/layout.js') !!}"></script>
 <script type="text/javascript">
     var token = '{{ Session::token() }}';
-    $('.sign_in').click(function(){
+    $('.sign_in').click(function () {
         var email = $('#email').val();
         var password = $('#password').val();
         $.ajax({
@@ -111,9 +111,9 @@
             data: {_token: token, email: email, password: password},
             dataType: 'json',
             url: 'login',
-            success: function(data){
+            success: function (data) {
                 alert(data);
-                if(data == "success"){
+                if (data == "success") {
                     window.location.reload();
                     $('.admin_tool').attr('href', "{{URL::to('/user')}}");
                     $('.user_tool').attr('href', "{{URL::to('/labeling')}}");
@@ -126,13 +126,13 @@
         });
     })
 
-    $('.log_out').click(function(){
+    $('.log_out').click(function () {
         $.ajax({
             type: 'post',
             url: 'logout',
             data: {_token: token},
             dataType: 'json',
-            success: function(data){
+            success: function (data) {
                 alert(data);
                 window.location.reload();
                 $('.admin_tool').attr('href', '#');

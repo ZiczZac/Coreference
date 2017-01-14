@@ -61,7 +61,9 @@ class LabelingController extends Controller
 		$data['list_content_np'] = $list_content_np;
 		dd($data);
 		dd($list_content_np);
-		return \View::make('user.labeling')
+		return \View::make('user.userlabeling')
 					->with('data', $data);
-	}    
+	}
+
+
 }
