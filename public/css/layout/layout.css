@@ -1,0 +1,106 @@
+*{
+    line-height: 1.5;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+nav.navbar{
+    background-image: url('../../img/bg-nav.png');
+}
+#myNavbar ul li a{
+    color: #fff;
+}
+
+@media screen and (min-width: 1024px) {
+    body, nav {
+        max-width: 1500px;
+        margin: auto;
+    }
+}
+div#footer{
+    background-image: url('../../img/bg-footer.png');
+    padding: 10px 20px;
+}
+
+#footer *{
+    color: #fff;
+
+}
+#footer h4{
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+#footer ul#contact{
+    padding-left: 0px;
+}
+#footer ul#contact li{
+    margin-top: 5px;
+    list-style-type: none;
+
+}
+
+@media screen and (max-width: 767px){
+    #footer img{
+        display: none;
+    }
+}
+div#map{
+    height: 280px;
+    background-image: url('../../img/bg-footer.png');
+}
+#head-section .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+#head-section .close {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    color: #f36;
+    font-size: 55px;
+    font-weight: bold;
+}
+#head-section input[type=text], input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+#head-section .modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    padding: 15px;
+    width: 100%; /* Could be more or less, depending on screen size */
+}
+#head-section .modal-content button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+#head-section .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+.sign-in 

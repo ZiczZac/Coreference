@@ -15,7 +15,7 @@ class LabelingController extends Controller
 		$files = File::all();
 		$fileLabeling = $this->getFileLabeling($files);
 		// dd($fileFinshed);
-		return \View::make('user.file_manage')
+		return \View::make('user.userfile')
 						->with('fileLabeling', $fileLabeling);
 	}
 
@@ -37,7 +37,7 @@ class LabelingController extends Controller
 		$end_on_file = [];
 		$list_content_np = [];
 		$list_token = explode(' ', $data['corpus']);
-
+		// dd(count($list_token));
 		foreach ($data['listNP'] as $np) {
 			
 			$infos = explode('_',$np);

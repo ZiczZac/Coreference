@@ -10,12 +10,12 @@ class UserController extends Controller
     public function index(){
         $users = User::all();
         $user = User::find(5);
-        return \View::make('admin.user.index')
+        return \View::make('admin.manageuser.index')
                         ->with('users', $users);
     }
 
     public function show(){
-
+        
     }
 
     public function update(Request $request){

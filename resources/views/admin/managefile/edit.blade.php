@@ -7,27 +7,23 @@
          
          <div class = "modal-header">
             <h4 class = "modal-title" id = "myModalLabel">
-               Edit
+               Edit File
             </h4>
          </div>
          
          <div class = "modal-body">
             <form>
               <div class="form-group">
-                <label for="text">User ID</label>
+                <label for="text">File ID</label>
                 <input type="text" disabled="true" class="form-control" id="id">
               </div>
               <div class="form-group">
-                <label for="text">Full Name</label>
+                <label for="text">Name</label>
                 <input type="text" class="form-control" id="name">
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email">
-              </div>
-              <div class="form-group">
-                <label for="type">Account Type</label>
-                <input type="type" class="form-control" id="type">
+                <label for="email">Importer</label>
+                <input type="text" class="form-control" id="importer">
               </div>
             </form>
          </div>

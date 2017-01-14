@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Login
-Route::get('login', 'LoginController@show');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
 Route::get('home', 'HomeController@index');
@@ -30,6 +29,7 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::delete('user/delete', 'UserController@delete');
 
 		Route::get('file', 'FileController@index');
+		Route::post('file/edit', 'FileController@update');
 	});
 	
 	//User
@@ -40,5 +40,11 @@ Route::group(['middleware' => 'auth'], function(){
 	});
 	
 	//Revisor
+});
+Route::get('layout', function (){
+    return view('layout');
+});
+Route::get('home', function (){
+    return view('home');
 });
 
