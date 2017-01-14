@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::get('labeling', 'LabelingController@fileLabeling');
 		Route::get('labeling/corpus', 'LabelingController@corpus');
 		Route::get('labeling/label/{id}', 'LabelingController@label');
+		Route::post('labeling/label/save', 'LabelingController@save');
+
+		Route::get('edit', 'EditLabelingController@index');
 	});
 	
 	//Revisor
