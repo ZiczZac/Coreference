@@ -52,7 +52,7 @@
 @include('admin.manageuser.create')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-    
+
     function getDataUser(elem){
         var data = [];
         $(elem).closest('tr').find('td').each(function(){
@@ -71,7 +71,7 @@
         var id = '<span class=\'id\'>' + data[1] +'</span>';
         var fullName = '<span>, ' + data[2] +'</span>';
         $('.info').append(title, id, fullName);
-        
+
     });
     $('#submit_delete').click(function(){
         var user_id = $('.id').text();
@@ -92,7 +92,7 @@
     });
     $('.edit').click(function(){
         var data = getDataUser($(this));
-        
+
         $('#id').val(data[1]);
         $('#name').val(data[2]);
         $('#email').val(data[3]);
@@ -139,7 +139,6 @@
       });
     });
 </script>
-<!-- </body>
-</html> -->
+
 
 @endsection
