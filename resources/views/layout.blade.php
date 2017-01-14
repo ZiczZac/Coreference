@@ -26,14 +26,15 @@
                 </ul>
                 @if(!Auth::user())
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
-                                        class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                    </ul>
-                @else
-                    <ul class="nav navbar-nav navbar-right">
                         <li><a herf="#" class="log_out"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
                         <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
                                         class="glyphicon glyphicon-log-in"></span>{{Auth::user()->fullname}}</a></li>
+
+                    </ul>
+                @else
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
+                                        class="glyphicon glyphicon-log-in"></span>Login</a></li>
                     </ul>
                 @endif
             </div>
@@ -100,7 +101,7 @@
 <script type="text/javascript" src="{!! asset('js/layout/layout.js') !!}"></script>
 <script type="text/javascript">
     var token = '{{ Session::token() }}';
-    $('.sign_in').click(function () {
+    $('.sign_in').click(function(){
         var email = $('#email').val();
         var password = $('#password').val();
         $.ajax({
@@ -108,9 +109,9 @@
             data: {_token: token, email: email, password: password},
             dataType: 'json',
             url: 'login',
-            success: function (data) {
+            success: function(data){
                 alert(data);
-                if (data == "success") {
+                if(data == "success"){
                     window.location.reload();
                     $('.admin_tool').attr('href', "{{URL::to('/user')}}");
                     $('.user_tool').attr('href', "{{URL::to('/labeling')}}");
@@ -123,13 +124,13 @@
         });
     })
 
-    $('.log_out').click(function () {
+    $('.log_out').click(function(){
         $.ajax({
             type: 'post',
             url: 'logout',
             data: {_token: token},
             dataType: 'json',
-            success: function (data) {
+            success: function(data){
                 alert(data);
                 window.location.reload();
                 $('.admin_tool').attr('href', '#');
