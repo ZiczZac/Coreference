@@ -59,8 +59,7 @@ class LabelingController extends Controller
 		$data['begin_on_file'] = $begin_on_file;
 		$data['end_on_file'] = $end_on_file;
 		$data['list_content_np'] = $list_content_np;
-		dd($data);
-		dd($list_content_np);
+
 		return \View::make('user.userlabeling')
 					->with('data', $data);
 	}
