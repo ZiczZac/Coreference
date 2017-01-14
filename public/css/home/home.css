@@ -25,10 +25,7 @@ div.titlebox h1 span{
     color: #aaa;
     line-height: 30px;
 }
-div#content-main{
-    padding-top: 10px;
-    padding-bottom: 30px;
-}
+
 div#content-main h3{
     color: #fff;
     background-color: #bbb;

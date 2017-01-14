@@ -1,0 +1,12 @@
+div#content-main table h2 {
+    text-align: center;
+    font-size: 30px;
+}
+div#content-main #hr1 {
+    height: 4px;
+    background-image: url(../../img/bg-main.jpg);
+}
+div#content-main #hr2{
+    height: 4px;
+    background-color: red;
+}

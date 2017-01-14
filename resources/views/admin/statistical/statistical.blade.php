@@ -202,7 +202,7 @@
         <div class="col-xs-12 col-sm-6">
 
             <table>
-                <caption><h2 class="warning">Các file quá hạn</h2></caption>
+                <caption><h2 class="warning">Thực hiện quá hạn (3 ngày)</h2></caption>
                 <tr>
                     <th>Stt</th>
                     <th>User</th>

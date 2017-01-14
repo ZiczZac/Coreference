@@ -12,7 +12,10 @@ nav.navbar{
 #myNavbar ul li a{
     color: #fff;
 }
-
+div#content-main{
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
 @media screen and (min-width: 1024px) {
     body, nav {
         max-width: 1500px;

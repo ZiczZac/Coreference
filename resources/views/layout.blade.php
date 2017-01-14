@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-2 col-xs-0"></div>
             <div class="col-md-6 col-sm-8 col-xs-12">
-                <form class="modal-content animate login_form" action="action_page.php">
+                <form class="modal-content animate login_form">
                     <span onclick="document.getElementById('id01').style.display='none'"
                           class="close" title="Close Modal">&times;</span>
                     <label><b>Email</b></label>
@@ -99,6 +99,7 @@
 <script type="text/javascript" src="{!! asset('jquery/jquery-3.1.1.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('jquery/bootstrap.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('js/layout/layout.js') !!}"></script>
+@yield('script')
 <script type="text/javascript">
     var token = '{{ Session::token() }}';
     $('.sign_in').click(function () {
