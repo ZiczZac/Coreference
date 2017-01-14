@@ -4,6 +4,7 @@
 body{
     margin: 0px;
     padding: 0px;
+    background-color: #f8f8f8;
 }
 nav.navbar{
     background-image: url('../../img/bg-nav.png');
@@ -42,6 +43,9 @@ div#footer{
 
 @media screen and (max-width: 767px){
     #footer img{
+        display: none;
+    }
+    #footer #map{
         display: none;
     }
 }

@@ -69,7 +69,7 @@
 <div class="container-fluid" id="banner">
     @yield('banner')
 </div>
-<div id="content-main">
+<div class="container-fluid" id="content-main">
     @yield('content-main')
 </div>
 
@@ -90,14 +90,14 @@
             </ul>
             <div style="clear: both;"></div>
             <!-- <br> -->
-            <img src="img/logo.jpg" alt="logo">
+            <img src="{!! asset('img/logo.jpg') !!}" alt="logo">
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12" id="map"></div>
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
-<script type="text/javascript" src="jquery/jquery-3.1.1.js"></script>
-<script type="text/javascript" src="jquery/bootstrap.js"></script>
+<script type="text/javascript" src="{!! asset('jquery/jquery-3.1.1.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('jquery/bootstrap.js') !!}"></script>
 <script type="text/javascript" src="{!! asset('js/layout/layout.js') !!}"></script>
 <script type="text/javascript">
     var token = '{{ Session::token() }}';
