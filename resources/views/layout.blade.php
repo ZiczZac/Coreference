@@ -15,23 +15,27 @@
                 <a class="navbar-brand" href="#">Img Logo</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a  href="#">About Us</a></li>
-                    <li><a class="admin_tool" href="{{URL::to('/user')}}">Admin Tool</a></li>
-                    <li><a class="user_tool" href="{{URL::to('/labeling')}}">User Tool</a></li>
-                    <li><a class="reviser_tool" href="#"></a></li>
-                </ul>
-                @if(!Auth::user())
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
-                                        class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a  href="#">About Us</a></li>
                     </ul>
-                @else
+                @if(Auth::user())
+                    <ul class="nav navbar-nav">
+                        <li><a class="admin_tool" href="{{URL::to('/user')}}">Admin Tool</a></li>
+                        <li><a class="user_tool" href="{{URL::to('/labeling')}}">User Tool</a></li>
+                        <li><a class="reviser_tool" href="#"></a></li>
+                    </ul>
+
                     <ul class="nav navbar-nav navbar-right">
                         <li><a herf="#" class="log_out"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
                         <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
                                         class="glyphicon glyphicon-log-in"></span>{{Auth::user()->fullname}}</a></li>
+
+                    </ul>
+                @else
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#" onclick="document.getElementById('id01').style.display='block'"><span
+                                        class="glyphicon glyphicon-log-in"></span>Login</a></li>
                     </ul>
                 @endif
             </div>
