@@ -1,38 +1,19 @@
-<!-- app/views/nerds/index.blade.php -->
-@extends('layouts.app')
+@extends('admin.layout.master')
 @section('content')
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Look! I'm CRUDding</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    Optional theme
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    Latest compiled and minified JavaScript
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<body> -->
 <div class="container">
 
-<nav class="navbar navbar-inverse">
-    <ul class="nav navbar-nav">
-        <li><a data-toggle = "modal" data-target = "#createModal">Add User</a>
-    </ul>
-</nav>
-
-<h1>User</h1>
+<h1>All Profiles</h1>
 
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>Number</td>
-            <td>User ID</td>
-            <td>Full Name</td>
-            <td>Email</td>
-            <td>Account Type</td>
-            <td>Active</td>
+            <th>No.</th>
+            <th>User name</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -66,9 +47,9 @@
     @endforeach
     </tbody>
 </div>
-@include('admin.user.edit')
-@include('admin.user.delete')
-@include('admin.user.create')
+@include('admin.manageuser.edit')
+@include('admin.manageuser.delete')
+@include('admin.manageuser.create')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
     

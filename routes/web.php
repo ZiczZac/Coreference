@@ -12,15 +12,39 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 //Login
-Route::get('login', 'LoginController@show');
 Route::post('login', 'LoginController@login');
+Route::post('logout', 'LoginController@logout');
+Route::get('home', 'HomeController@index');
 
-//User
-Route::get('user', 'UserController@index');
-Route::post('user/update', 'UserController@update')->name('update');
-Route::get('/home', 'HomeController@index');
-Route::post('user/active', 'UserController@active');
-Route::delete('user/delete', 'UserController@delete');
+Route::group(['middleware' => 'auth'], function(){
+	
+	//Admin
+	Route::group(['middleware' => 'admin'], function(){
+		Route::get('user', 'UserController@index');
+		Route::post('user/update', 'UserController@update')->name('update');
+		Route::post('user/active', 'UserController@active');
+		Route::delete('user/delete', 'UserController@delete');
+
+		Route::get('file', 'FileController@index');
+		Route::post('file/edit', 'FileController@update');
+	});
+	
+	//User
+	Route::group(['middleware' => 'user'], function(){
+		Route::get('labeling', 'LabelingController@fileLabeling');
+		Route::get('labeling/corpus', 'LabelingController@corpus');
+		Route::get('labeling/label/{id}', 'LabelingController@label');
+	});
+	
+	//Revisor
+});
+Route::get('layout', function (){
+    return view('layout');
+});
+Route::get('home', function (){
+    return view('home');
+});
+
