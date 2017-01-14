@@ -196,6 +196,10 @@
 		//Mang bd trong file, ket thuc trong file, 
 		//Mang cac dai
 		$(document).ready(function(){
+			
+			// console.log(belongGroup[0]);
+		});
+		function showOnDiv(idCard){
 			_contentFile = '{{$data['corpus']}}';	
 			_words = <?php echo json_encode($data['list_token']); ?>;
 			// alert(_words);
@@ -205,9 +209,7 @@
 			_arrDt=<?php echo json_encode($data['list_content_np']) ?>;
 			modify();
 			subGroup(_indexStart,_indexEnd);
-			// console.log(belongGroup[0]);
-		});
-		function showOnDiv(idCard){
+
 			if(_save==1){
 				alert("Luu lai ket qua lam viec truoc khi tao moi ! "); return false;
 			}
@@ -229,9 +231,9 @@
 			        	var tbG = "Nhom : ";
 			        	var vG = parseInt(_arrGroup[indexDT])+1;
 			        	// tbG+=vG+": "+_haveChild[parseInt(_arrGroup[indexDT])];
-			        	tbG+=vG+": "+indexDT;
+			        	tbG+=vG;
 				        if(_arrGroup[indexDT]>=0){document.getElementById(this.id).attributes['title'].value = tbG}
-				        	else{document.getElementById(this.id).attributes['title'].value = "Chưa được gom nhóm : "+indexDT}
+				        	else{document.getElementById(this.id).attributes['title'].value = "Chưa được gom nhóm"}
 				        // if(_arrGroup[indexDT]==-1){document.getElementById(this.id).attributes['title'].value = "Chưa được gom nhóm"}
 
 
@@ -294,51 +296,51 @@
 				var g = dt.attributes['index'].value;
 				var index = parseInt(g);
 				var x = $("#"+idDaiTu).children("b");
-				alert(_arrDt[index]);
-				if(_isChild[index]!=1){
-					if(belongGroup[index].length==0){
-						chuyenDaiTuSangNhom(g,dt,_idG);	
-					}
-					else{
-						var bool = false;
-						for(var i = 0; i<belongGroup[index].length;i++){
-							if(_visitted[belongGroup[index][i]]!=1||_visitted[index]!=1){
-								bool=true;
-								break;
-							}
-						}
-						// alert(bool);
-						if(bool){
-							document.getElementById("listNP").innerHTML="";
-
-							dt.attributes["data-toggle"].value="modal";
-							dt.attributes["data-target"].value="#npview";
-							if(_visitted[index]!=1){
-								var id_parent = "modal_id_"+g;
-								var parent = '<p id="'+id_parent+'" class="mod">' +_arrDt[g]+' </p>';
-								$('#listNP').append(parent);
-								$("#"+id_parent).click(function(){
-										getIndex(this.id);
-									});
-							}
-							for(var i = 0; i<belongGroup[index].length;i++){
-								var index_child = parseInt(belongGroup[index][i]);
-								if(_visitted[index_child]!=1){
-									var nid= "modal_id_"+index_child;
-									var np = '<p id="'+nid+'" class="mod">' +_arrDt[index_child]+' </p>';
-									$('#listNP').append(np);
-									$("#"+nid).click(function(){
-										getIndex(this.id);
-									});
-								}
-							}
+				
+					if(_isChild[index]!=1){
+						if(belongGroup[index].length==0){
+							if(_visitted[index]!=1){chuyenDaiTuSangNhom(g,dt,_idG);}
 						}
 						else{
-							dt.attributes["data-toggle"].value="";
-							dt.attributes["data-target"].value="";
+							var bool = false;
+							for(var i = 0; i<belongGroup[index].length;i++){
+								if(_visitted[belongGroup[index][i]]!=1||_visitted[index]!=1){
+									bool=true;
+									break;
+								}
+							}
+							// alert(bool);
+							if(bool){
+								document.getElementById("listNP").innerHTML="";
+
+								dt.attributes["data-toggle"].value="modal";
+								dt.attributes["data-target"].value="#npview";
+								if(_visitted[index]!=1){
+									var id_parent = "modal_id_"+g;
+									var parent = '<p id="'+id_parent+'" class="mod">' +_arrDt[g]+' </p>';
+									$('#listNP').append(parent);
+									$("#"+id_parent).click(function(){
+											getIndex(this.id);
+										});
+								}
+								for(var i = 0; i<belongGroup[index].length;i++){
+									var index_child = parseInt(belongGroup[index][i]);
+									if(_visitted[index_child]!=1){
+										var nid= "modal_id_"+index_child;
+										var np = '<p id="'+nid+'" class="mod">' +_arrDt[index_child]+' </p>';
+										$('#listNP').append(np);
+										$("#"+nid).click(function(){
+											getIndex(this.id);
+										});
+									}
+								}
+							}
+							else{
+								dt.attributes["data-toggle"].value="";
+								dt.attributes["data-target"].value="";
+							}
+						
 						}
-					
-					}
 				}
 				
 
@@ -440,22 +442,25 @@
 		// *************************************Làm tươi khi sửa 1 file đã gom nhóm*********************************//
 		function update(){
 			rF();
-			_arrayID=arrayID;
-			_arrDt=arrDaiTu;
+			var contentFile="Duong la sinh vien , Anh ay choi ghita va co ta la nguoi yeu";
+			//                0     1   2   3   4  5   6  7    8     9  10 11 12 13    14
+			_arrayID=["d1","d2","d3","d4","d5","d6"];
+			_arrDt=["Duong","sinh_vien","vien","Anh_ay","Co_ta","nguoi"];
 			 
-			_indexStart=arrIndexStart;
-			_indexEnd=arrIndexEnd;
-			_arrGroup=arrGroup;
+			_indexStart=[0,2,3,5,10,13];
+			_indexEnd=  [0,4,3,6,11,13];
+			_arrGroup=[-1,1,0,-1,1,-1];
+			_words=contentFile.split(" ");
 			modify();
 			subGroup(_indexStart,_indexEnd);
-
+			console.log(belongGroup[1].length);
 			// console.log(_arrDt)
 			// _words=contentFile.split(" ");
 			var slG=-1;
-			for (var i = 0; i < arrGroup.length; i++) {
+			for (var i = 0; i < _arrGroup.length; i++) {
 
-				if(arrGroup[i]>=0){_visitted[i]=1}
-				if(arrGroup[i]>slG){slG++}
+				if(_arrGroup[i]>=0){_visitted[i]=1}
+				if(_arrGroup[i]>slG){slG++}
 			}
 			_maxG=slG;
 
@@ -474,10 +479,10 @@
 			}
 			
 
-			for (var i = 0; i <=arrDaiTu.length; i++) {
+			for (var i = 0; i <=_arrDt.length; i++) {
 				if(_arrGroup[i]>=0){
-					var dt=document.getElementById(arrayID[i]);
-					chuyenDaiTuSangNhom(i,dt,arrGroup[i]);
+					var dt=document.getElementById(_arrayID[i]);
+					chuyenDaiTuSangNhom(i,dt,_arrGroup[i]);
 				}
 			}
 
@@ -496,7 +501,7 @@
 				// var arrIndexEnd =  [0,3,2,6,11,13];
 
 				// arrGroup=		   [-1,1,0,-1,1,-1];
-				_words=contentFile.split(" ");
+				// _words=contentFile.split(" ");
 				// console.log(_words[0])	
 				// update(arrayID,arrDaiTu,arrIndexStart,arrIndexEnd,arrGroup,contentFile);
 				update();
