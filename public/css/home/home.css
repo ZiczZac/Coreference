@@ -25,11 +25,7 @@ div.titlebox h1 span{
     color: #aaa;
     line-height: 30px;
 }
-div#content-main{
-    background-color: #f8f8f8;
-    padding-top: 10px;
-    padding-bottom: 30px;
-}
+
 div#content-main h3{
     color: #fff;
     background-color: #bbb;
@@ -74,7 +70,7 @@ div#content-main hr{
         font-size: 60px;
     }
     #banner-content{
-        max-height: 620px;
+        max-height: 510px;
     }
 
 }

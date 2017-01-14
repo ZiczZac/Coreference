@@ -8,33 +8,32 @@
     </div>
 @stop
 @section('content-main')
-    <div class="container-fluid" id="content-main">
-        <div class="container">
-            <h3>Language is the dress of thought.</h3>
-            <hr id="first">
-            <div>content 1<br>
-                .................<br>
-                ...........
-                Hoạt động sắp tới
-                .................<br>
-                ...........
+    <div class="container">
+        <h3>Ngôn ngữ là y phục của tư duy.<br>
+            Language is the dress of thought.</h3>
+        <hr id="first">
+        <div>content 1<br>
+            .................<br>
+            ...........
+            Hoạt động sắp tới
+            .................<br>
+            ...........
 
-            </div>
-            <hr>
-            <div>cotent 2<br>
-                .....<br>
-                Hoạt động gần đây
-                .................<br>
-                ...........
-            </div>
-            <hr>
-            <div>content 3<br>
-                .....<br>
-                Hoạt động đã làm<br>
-                .................<br>
-                ...........
+        </div>
+        <hr>
+        <div>cotent 2<br>
+            .....<br>
+            Hoạt động gần đây
+            .................<br>
+            ...........
+        </div>
+        <hr>
+        <div>content 3<br>
+            .....<br>
+            Hoạt động đã làm<br>
+            .................<br>
+            ...........
 
-            </div>
         </div>
     </div>
 @stop

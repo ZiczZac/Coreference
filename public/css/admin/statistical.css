@@ -1,0 +1,58 @@
+#banner #welcome {
+    font-size: 55px;
+    color: rgb(255, 153, 51);
+}
+
+#banner h1 {
+    text-align: center;
+    margin: 30px 0px;
+}
+
+#banner hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#banner .big-number {
+    font-size: 45px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#banner .info4 {
+    color: #03f;
+}
+#banner .info3{
+    color: #36c;
+}
+#banner .info2{
+    color: #0c0;
+}
+#banner .info1{
+    color: #3ff;
+}
+#banner .pannel-seemore {
+    text-align: center;
+}
+
+div#content-main hr {
+    height: 4px;
+    background-image: url('../../img/bg-main.jpg');
+}
+
+div#content-main table {
+    margin: auto;
+}
+div#content-main table h2{
+    text-align: center;
+}
+div#content-main th {
+    text-align: center;
+}
+div#content-main td, th {
+    padding: 20px;
+    border-bottom: 1px solid #bbb;
+}
+div#content-main .warning{
+    color: #f33;
+}

@@ -53,5 +53,9 @@ Route::get('home', function (){
 Route::get('admin', function (){
     return view('admin.layout.admin-layout');
 });
-
-
+Route::get('admin/statistical', function (){
+    return view('admin.statistical.statistical');
+});
+Route::get('admin/users', function (){
+    return view('admin.users.users');
+});
