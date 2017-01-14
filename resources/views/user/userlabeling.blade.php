@@ -69,13 +69,21 @@
 		//Mang bd trong file, ket thuc trong file, 
 		//Mang cac dai
 		$(document).ready(function(){
-			_contentFile = 'Bên cạnh văn nghị luận xã hội thì trong chương trình Ngữ văn lớp 10 còn có một thể loại văn nữa là bài văn tả cảnh . Giúp chúng ta hiểu rõ hơn về thể loại này . Dưới đây là một số bài văn mẫu về thể loại này mời các bạn cũng tham khảo .';	
-			_words=_contentFile.split(" ");
-			_arrayID = ["d1","d2","d3","d4","d5","d6","d7","d8","d9","d10"]; 
-			_indexStart = [2,3,5,9,11,18,23,29,35,44];
-			_indexEnd=    [6,4,6,10,12,19,23,29,35,44];
+			_contentFile = '{{$data['corpus']}}';	
+			_words = <?php echo json_encode($data['list_token']); ?>;
+			// alert(_words);
+			_arrayID = <?php echo json_encode($data['listNP']); ?>; 
+			_indexStart = <?php echo json_encode($data['begin_on_file']) ?>;
+			_indexEnd=  <?php echo json_encode($data['end_on_file']) ?>;
+			_arrDt=<?php echo json_encode($data['list_content_np']) ?>;
+
+			// _contentFile = 'Bên cạnh văn nghị luận xã hội thì trong chương trình Ngữ văn lớp 10 còn có một thể loại văn nữa là bài văn tả cảnh . Giúp chúng ta hiểu rõ hơn về thể loại này . Dưới đây là một số bài văn mẫu về thể loại này mời các bạn cũng tham khảo .';	
+			// _words=_contentFile.split(" ");
+			// _arrayID = ["d1","d2","d3","d4","d5","d6","d7","d8","d9","d10"]; 
+			// _indexStart = [2,3,5,9,11,18,23,29,35,44];
+			// _indexEnd=    [6,4,6,10,12,19,23,29,35,44];
 			// // _indexEnd = 
-			_arrDt=["văn_nghị_luận_xã_hội","nghị_luận","xã_hội"];
+			// _arrDt=["văn_nghị_luận_xã_hội","nghị_luận","xã_hội"];
 			// var start_S =[2,3,5,9,11,18,23,1,7,5];
 			// var end_S=[5,4,5,10,13,19,24,2,9,7];
 			// for(var i = 0 ; i< start_S.length;i++){
