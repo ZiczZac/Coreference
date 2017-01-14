@@ -15,7 +15,16 @@
          </div>
          
          <div class = "modal-body">
-            Add some text here
+            <div id = "listNP">
+               <!-- <p>Duong</p>
+               <p>Dat</p> -->
+            </div>
+            <div id= "group">
+               <input type="text" name="Group" id = "G">
+            </div>
+
+
+
          </div>
          
          <div class = "modal-footer">
