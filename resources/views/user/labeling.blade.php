@@ -32,26 +32,27 @@
 
 		
 
+		function isChild(){
 
+		}
 		function  highlight(arrayID,arrDaiTu,arrIndexStart,arrIndexEnd,contentFile,kichthuoc) {
 			var iStart_End=0;// chi so mang arrIndexStart va arrIndexEnd
-			var vs_S=[];
-			var vs_E=[];
-			_words = contentFile.split(" ");
+			
+			
 			var l = _words.length;
 			var s='';
 			for (var i =  0; i <= _words.length-1; i++) {
 				if(i==arrIndexStart[iStart_End]){
-						if(vs_S[i]!=1){
-							_words[i]='<b title="" data-toggle="" data-target="" style="font-size:'+kichthuoc+'" index='+iStart_End+' class="daitu" id='+arrayID[iStart_End]+' value='+arrDaiTu[iStart_End]+' onclick="clickDaiTu(this.id)">'+_words[i];
-							vs_S[i]=1;
-						}
-						if(vs_E[arrIndexEnd[iStart_End]]!=1){
-							_words[arrIndexEnd[iStart_End]]=_words[arrIndexEnd[iStart_End]]+'</b>';
-							vs_E[arrIndexEnd[iStart_End]]=1;
-						}
 						
-						iStart_End++;
+							_words[i]='<b title="" data-toggle="" data-target="" style="font-size:'+kichthuoc+'" index='+iStart_End+' class="daitu" id='+arrayID[iStart_End]+' value='+arrDaiTu[iStart_End]+' onclick="clickDaiTu(this.id)">'+_words[i];
+						
+						
+						
+							_words[arrIndexEnd[iStart_End]]=_words[arrIndexEnd[iStart_End]]+'</b>';
+							
+						
+						
+							iStart_End++;
 				}
 
 				s+=_words[i]+' ';
@@ -72,7 +73,7 @@
 			_words=_contentFile.split(" ");
 			_arrayID = ["d1","d2","d3","d4","d5","d6","d7","d8","d9","d10"]; 
 			_indexStart = [2,3,5,9,11,18,23,29,35,44];
-			_indexEnd=    [6,4,5,10,12,19,23,29,35,44];
+			_indexEnd=    [6,4,6,10,12,19,23,29,35,44];
 			// // _indexEnd = 
 			_arrDt=["văn_nghị_luận_xã_hội","nghị_luận","xã_hội"];
 			// var start_S =[2,3,5,9,11,18,23,1,7,5];
@@ -137,6 +138,9 @@
 		
 		
 		function chuyenDaiTuSangNhom(g,dt,chuyensangdau){
+					document.getElementById(_arrayID[parseInt(g)]).style.fontSize="100%";
+					_arrGroup[parseInt(g)]=_idG;  
+					_visitted[parseInt(g)]=1;
 					var para = document.createElement("span");
 					var idmoi = "newID"+g;para.id = idmoi;
 					para.className='dagomnhom';
@@ -173,42 +177,49 @@
 				var g = dt.attributes['index'].value;
 				var index = parseInt(g);
 				var x = $("#"+idDaiTu).children("b");
-				
+				// alert(x[2].attributes['index'].value);
 				
 				
 
 				if (_visitted[index]!=1){	
 					if(x.length==0){                  // khong co Np con ben trong
-						dt.style.fontSize="100%";
-						console.log(_haveChild[index]);
-						_arrGroup[index]=_idG;  
-						_visitted[index]=1;
-						var tb = _arrDt[index]  +' : '+_arrGroup[index];                      
-						// console.log(tb);
+						
 						chuyenDaiTuSangNhom(g,dt,_idG);	
 					}
 					else{                                     // neu co con thi phai dua ra lua chon
-						// var childs = $('#'+idDaiTu).children();
-						// console.log(childs.length+": con");
-						// for(var i =0; i<childs.length;i++){
-						// 	var idex = parseInt(childs[i].attributes['index'].value);
-						// 	console.log(_arrDt[idex]);
-						// }
+						
+						document.getElementById("listNP").innerHTML="";
 
-						// <button class = "btn btn-primary edit" data-toggle = "modal" data-target = "#editModal">Edit</button>
-						// alert("ok");
 						dt.attributes["data-toggle"].value="modal";
 						dt.attributes["data-target"].value="#npview";
-						var s ="";
-						var r = "";
+						if(_visitted[g]!=-1){
+							var id_parent = "modal_id_"+g;
+							var parent = '<p id="'+id_parent+'" class="mod">' +_arrDt[g]+' </p>';
+							$('#listNP').append(parent);
+							$("#"+id_parent).click(function(){
+									getIndex(this.id);
+								});
+						}
+						
 						for(var i =0; i<x.length; i++){
 							var index = parseInt(x[i].attributes['index'].value);
+							if(_visitted[index]!=1){
+								var NPmodal = document.createElement("p");
+								var dx = document.createTextNode(_arrDt[index]+" ");
+								// NPmodal.className="mdNP";
+								var id= "modal_id_"+index;
+								NPmodal.id = id;
+								NPmodal.className="mod";
+								thongbaoDaiTuGoc(id);
+								NPmodal.appendChild(dx);
+								document.getElementById("listNP").appendChild(NPmodal);
 							
-							r+=_arrDt[index]+" ";
-						}
-						alert("Co "+x.length+" con : "+r);
+								$("#"+id).click(function(){
+									getIndex(this.id);
+								});
+							}	
+						}	
 					}
-					
 				}
 				else{
 					return false;
@@ -218,6 +229,16 @@
 
 		}
 
+		var modal_id= "modal_id_";
+		function getIndex(id){
+			var index=parseInt(id.substring(modal_id.length,id.length));
+			if(_visitted[index]!=1){
+				chuyenDaiTuSangNhom(index,_arrDt[index],_idG);
+				$("#"+id).remove();
+			}
+			
+
+		}
 		function back(idBack){
 			var index=parseInt(idBack.substring(5,idBack.length));
 			_arrGroup[index]=-1;
@@ -399,7 +420,10 @@
 			
 			/*border-radius: 5%;*/
 		}
-
+		/*#mdNP{
+			background-color: blue;
+			color: red;
+		}*/
 		#right{
 			margin-left: 5px;
 			float: left;
@@ -409,6 +433,8 @@
 			overflow: auto;
 			/*border-radius: 5%;*/
 		}
+
+		
 		#dongvitu1{
 			margin: 10px 10px;
 			background-color: #66FFCC;
@@ -451,6 +477,8 @@
 			font-size: 20px;
 			font:bold;
 		}
+
+		/*#modal_id_0{cursor: hand;}*/
 		.back{
 			background-color: white;
 			color: red;
