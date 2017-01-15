@@ -9,9 +9,10 @@
     left: 105px;
 }
 #content-main #left{
-    padding: 5px;
+    padding: 10px;
 }
 #left #doanvan{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     min-height: 450px;
     max-height: 550px;
     overflow-y: scroll;
@@ -31,6 +32,10 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #ffc !important;
     padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    line-height: 2.0;
+    overflow-x: hidden;
 }
 #right .group:hover{
     cursor: hand;
@@ -40,7 +45,7 @@
 #right .dagomnhom{
     background-color: #69f;
     padding: 4px;
-    margin: 2px;
+    margin: 15px 2px !important;
     border-radius: 3px;
 }
 #right .dagomnhom:hover{

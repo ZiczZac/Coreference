@@ -75,7 +75,7 @@ class EditLabelingController extends Controller
         $data['list_content_np'] = $list_content_np;
         $data['list_token'] = $list_token;
 
-        return \View::make('user.userlabeling')->with('data', $data);
+        return \View::make('member.labeling.edit')->with('data', $data);
     }
 
     public function getOldId($result_old){

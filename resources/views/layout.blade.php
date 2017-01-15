@@ -18,6 +18,7 @@
 
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
+                        @yield('menu')
                     </ul>
                 @if(Auth::user())
                     @if(Auth::user()->account_type == 1)
@@ -29,6 +30,7 @@
                     @if(Auth::user()->account_type == 2)
                         <ul class="nav navbar-nav">
                             <li><a class="user_tool" href="{{URL::to('/labeling')}}">Labeling</a></li>
+                            <li><a href="{{URL::to('edit')}}">Edit</a> </li>
                         </ul>
                     @endif
                     <ul class="nav navbar-nav navbar-right">

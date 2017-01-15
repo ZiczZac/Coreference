@@ -9,8 +9,15 @@ div#banner-content{
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
-
-
+#head-section .modal-content button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
 div.titlebox{
     color: #333;
     padding: 20% 0 0 0;

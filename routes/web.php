@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 		Route::get('edit', 'EditLabelingController@index');
 		Route::get('edit/label/{id}', 'EditLabelingController@edit');
-		Route::post('edit/lable/save', 'LabelingController@save');
+		Route::post('edit/label/save', 'LabelingController@save');
 
 	});
 	

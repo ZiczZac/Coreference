@@ -65,7 +65,7 @@ class LabelingController extends Controller
 		$data['list_token'] = $list_token;
 		$data['groupNP'] = [];
 		// dd($data);
-		return \View::make('user.userlabeling')
+		return \View::make('member.labeling.label')
 					->with('data', $data);
 	}
 
