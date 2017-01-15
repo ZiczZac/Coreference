@@ -61,4 +61,6 @@ Route::get('home', function (){
 Route::get('admin', function (){
     return view('admin.layout.admin-layout');
 });
-
+Route::get('bbb', function (){
+    return view('member.labeling.label');
+});

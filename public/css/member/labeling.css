@@ -1,0 +1,51 @@
+#banner h1 {
+    text-align: center;
+    margin: 30px 0px;
+}
+#banner .btn-group{
+    position: fixed;
+    z-index: 10;
+    top: 50px;
+    left: 105px;
+}
+#content-main #left{
+    padding: 5px;
+}
+#left #doanvan{
+    min-height: 450px;
+    max-height: 550px;
+    overflow-y: scroll;
+    padding: 0px 10px;
+}
+#content-main #right{
+    min-height: 450px;
+    max-height: 550px;
+    padding: 5px 15px;
+    background-color: #eee;
+}
+#left .daitu:hover{
+    cursor: hand;
+    color: #0e0;
+}
+#right .group{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #ffc !important;
+    padding: 5px;
+}
+#right .group:hover{
+    cursor: hand;
+    color: #0e0;
+    background-color: #fff !important;
+}
+#right .dagomnhom{
+    background-color: #69f;
+    padding: 4px;
+    margin: 2px;
+    border-radius: 3px;
+}
+#right .dagomnhom:hover{
+    background-color: #ff9;
+    font-size: 18px;
+    color: red;
+    padding: 2px;
+}

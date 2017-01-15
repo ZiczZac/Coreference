@@ -18,7 +18,6 @@
 
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a  href="#">About Us</a></li>
                     </ul>
                 @if(Auth::user())
                     @if(Auth::user()->account_type == 1)

@@ -12,6 +12,9 @@ nav.navbar{
 #myNavbar ul li a{
     color: #fff;
 }
+#myNavbar ul li a:hover{
+    cursor: hand;
+}
 div#content-main{
     padding-top: 10px;
     padding-bottom: 30px;
